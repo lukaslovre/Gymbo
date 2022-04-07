@@ -1,18 +1,20 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <p v-if="userEmail">Trenutni korisnik je {{ userEmail.email }}</p>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import { computed } from "@vue/runtime-core";
+import { useStore } from "vuex";
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-}
+  name: "HomeView",
+  setup() {
+    const store = useStore();
+
+    const userEmail = computed(() => {
+      return store.state.user;
+    });
+
+    return { userEmail };
+  },
+};
 </script>

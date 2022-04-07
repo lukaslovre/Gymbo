@@ -1,14 +1,20 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
 export default createStore({
   state: {
+    user: null,
+    authIsReady: false,
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
+    setUser(state, payload) {
+      state.user = payload;
+      console.log("setUser(): ", state.user);
+    },
+    setAuthIsReady(state) {
+      state.authIsReady = true;
+    },
   },
-  actions: {
-  },
-  modules: {
-  }
-})
+  actions: {},
+  modules: {},
+});
