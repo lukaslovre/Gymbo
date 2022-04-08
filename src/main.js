@@ -22,8 +22,6 @@ const auth = getAuth(FirebaseApp);
 
 const unsub = onAuthStateChanged(auth, (user) => {
   store.commit("setUser", user);
-  store.commit("setAuthIsReady");
   unsub();
+  createApp(App).use(store).use(router).mount("#app");
 });
-
-createApp(App).use(store).use(router).mount("#app");

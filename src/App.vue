@@ -1,24 +1,18 @@
 <template>
-  <div class="loader" v-if="!authReady">Loading...</div>
-  <div v-else>
-    <Header></Header>
-    <router-view />
-  </div>
+  <!-- 
+  <div class="loader">Loading...</div>
+ -->
+
+  <Header></Header>
+  <router-view />
 </template>
 
 <script>
-import { computed } from "@vue/runtime-core";
-import { useStore } from "vuex";
 import Header from "./components/Header.vue";
 
 export default {
   components: {
     Header,
-  },
-  setup() {
-    const store = useStore();
-    const authReady = computed(() => store.state.authIsReady);
-    return { authReady };
   },
 };
 </script>
@@ -43,7 +37,7 @@ nav a.router-link-exact-active {
   font-weight: 600;
 }
 
-/* LOADER STYLE */
+/* LOADER STYLE 
 .loader {
   color: #7067cf;
   font-size: 90px;
@@ -142,4 +136,5 @@ nav a.router-link-exact-active {
     transform: rotate(360deg);
   }
 }
+  */
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <p v-if="userEmail">Trenutni korisnik je {{ userEmail.email }}</p>
+  <p v-if="userAccount">Trenutni korisnik je {{ userAccount.email }}</p>
 </template>
 
 <script>
@@ -10,11 +10,11 @@ export default {
   setup() {
     const store = useStore();
 
-    const userEmail = computed(() => {
+    const userAccount = computed(() => {
       return store.state.user;
     });
 
-    return { userEmail };
+    return { userAccount };
   },
 };
 </script>

@@ -11,9 +11,6 @@ export default createStore({
       state.user = payload;
       console.log("setUser(): ", state.user);
     },
-    setAuthIsReady(state) {
-      state.authIsReady = true;
-    },
   },
   actions: {},
   modules: {},
