@@ -23,15 +23,17 @@
 
 <script>
 import { ref } from "@vue/reactivity";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { passRegisterParameters } from "../JSfunctions/index.js";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc, getFirestore } from "@firebase/firestore";
 
 export default {
   name: "RegisterBody",
   setup() {
     const auth = getAuth();
+    const db = getFirestore();
     const store = useStore();
     const router = useRouter();
 
@@ -60,8 +62,17 @@ export default {
         .then((userCredential) => {
           const user = userCredential.user;
           store.commit("setUser", user);
+          // dodavanje user dokumenta u FireStore:
+          const userInfo = {
+            friends: [],
+            schedule: [],
+            username: emailValue.value,
+          };
+          setDoc(doc(db, "users", user.uid), userInfo).catch((e) => {
+            console.error("Error adding document: ", e);
+          });
+          // ^^
           router.push("/");
-          //console.log(user);
         })
         .catch((err) => {
           const errorCode = err.code;

@@ -33,7 +33,7 @@ export default {
         .then(() => {
           // Sign-out successful.
           store.commit("setUser", null);
-          router.push("/");
+          router.push("/login");
         })
         .catch((error) => {
           const errorCode = err.code;
