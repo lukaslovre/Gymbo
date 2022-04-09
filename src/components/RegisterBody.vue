@@ -65,7 +65,6 @@ export default {
           // dodavanje user dokumenta u FireStore:
           const userInfo = {
             friends: [],
-            schedule: [],
             username: emailValue.value,
           };
           setDoc(doc(db, "users", user.uid), userInfo).catch((e) => {

@@ -46,7 +46,6 @@ export default {
     const addUser = async () => {
       const userInfo = {
         friends: [],
-        schedule: [],
         username: addedUsername.value,
       };
 

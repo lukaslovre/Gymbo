@@ -71,7 +71,7 @@ export default {
   justify-content: space-around;
 }
 .timeStamp > p {
-  height: 2rem;
+  height: 2.5rem;
   width: 100%; /* izracunati width na temelju broja korisnika*/
   border-top: 1px solid rgb(199, 193, 212);
 }
