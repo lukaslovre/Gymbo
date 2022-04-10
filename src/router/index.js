@@ -3,6 +3,7 @@ import store from "../store";
 import HomeView from "../views/HomeView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import LoginView from "../views/LoginView.vue";
+import SetTimeView from "../views/SetTimeView.vue";
 
 const routes = [
   {
@@ -22,6 +23,14 @@ const routes = [
     path: "/login",
     name: "login",
     component: LoginView,
+  },
+  {
+    path: "/set-time",
+    name: "set-time",
+    component: SetTimeView,
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 

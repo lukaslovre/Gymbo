@@ -20,7 +20,7 @@ import Timeline from "../components/Timeline.vue";
 
 import { computed, ref } from "@vue/runtime-core";
 import { useStore } from "vuex";
-import { doc, setDoc, getDocs, getFirestore } from "@firebase/firestore";
+import { doc, setDoc, getDoc, getFirestore } from "@firebase/firestore";
 
 export default {
   name: "HomeView",
@@ -32,15 +32,6 @@ export default {
     const db = getFirestore();
 
     const userAccount = computed(() => store.state.user);
-    /*
-    const getSnapshot = async () => {
-      const querySnapshot = await getDocs(collection(db, "users"));
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().username}`);
-      });
-    };
-    getSnapshot();
-    */
 
     const addedUsername = ref("");
     const addUser = async () => {
