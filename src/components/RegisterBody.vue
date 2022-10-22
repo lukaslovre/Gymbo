@@ -2,21 +2,32 @@
   <h1>Register</h1>
   <form @submit.prevent="register">
     <label for="email">Email:</label>
-    <input type="email" name="email" id="email" v-model="emailValue" />
+    <input
+      type="email"
+      name="email"
+      id="email"
+      autocomplete="email"
+      v-model="emailValue"
+    />
+
     <label for="password">Password:</label>
     <input
       type="password"
       name="password"
       id="password"
+      autocomplete="new-password"
       v-model="passwordValue"
     />
+
     <label for="passwordConf">Confirm password:</label>
     <input
       type="password"
       name="passwordConf"
       id="passwordConf"
+      autocomplete="new-password"
       v-model="passwordConfValue"
     />
+
     <button>Submit</button>
   </form>
 </template>
@@ -70,6 +81,20 @@ export default {
           setDoc(doc(db, "users", user.uid), userInfo).catch((e) => {
             console.error("Error adding document: ", e);
           });
+
+          const scheduleData = {
+            username: emailValue.value,
+            Monday: [],
+            Tuesday: [],
+            Wednesday: [],
+            Thursday: [],
+            Friday: [],
+            Saturday: [],
+            Sunday: [],
+          };
+          setDoc(doc(db, "schedules", user.uid), scheduleData).catch((e) => {
+            console.error("Error adding document: ", e);
+          });
           // ^^
           router.push("/");
         })
@@ -90,42 +115,48 @@ export default {
 h1 {
   text-align: center;
   margin: 3rem 0;
-  font-weight: 500;
+  font-weight: 600;
 }
 form {
   width: 75%;
   margin: auto;
 }
-
+label {
+  font-weight: 600;
+}
 input {
   width: 100%;
-  padding: 1em;
   margin-top: 0.5rem;
   margin-bottom: 2rem;
-  font-size: 1rem;
-  color: #3c3c3c;
-  background-color: #f1f1f1;
+
+  padding: 1em 1.25em;
+  background-color: #fff;
   border: none;
-  outline: none;
-  border-bottom: #929292 2px solid;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.125);
+
+  font-size: 1.125rem;
+  color: #808080;
+  font-weight: 500;
 }
-input:focus {
-  background-color: white;
-  border-bottom: #7067cf 4px solid;
-  margin-bottom: calc(1.5rem - 2px);
-}
+
 button {
   display: block;
   margin: 1rem auto;
-  padding: 0.375em 0.75em;
+  padding: 0.375em 1em;
   background-color: #7067cf;
+  box-shadow: 0 0 0.25rem #7067cf;
   border: none;
   border-radius: 0.5rem;
+  cursor: pointer;
   font-size: 1.625rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #f5f5f5;
+
+  transition: transform 100ms ease;
 }
-button:hover {
-  border: #3c3c3c 2px solid;
+button:hover,
+button:active {
+  transform: scale(0.9);
 }
 </style>
